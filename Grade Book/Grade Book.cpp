@@ -7,6 +7,7 @@
 
 int main()
 {
+    // For now just getting the reading file aspect of this to work
     std::ifstream inputFile("StudentGrades.txt");
 
     if (!inputFile.is_open())
