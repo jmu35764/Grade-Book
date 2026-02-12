@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <string>
 
@@ -16,11 +17,19 @@ int main()
         return 1;
     }
 
-    std::string word;
+    //std::string name[20];
+    std::string name;
+    int average[20];
+    int x = 0;
+    std::string grade1, grade2, grade3, grade4, grade5;
 
-    while (inputFile >> word)
+    while (inputFile >> name >> grade1 >> grade2 >> grade3 >> grade4 >> grade5)
     {
-        std::cout << word << std::endl;
+        std::cout << name << std::setw(4) << grade1 
+                          << std::setw(4) << grade2 
+                          << std::setw(4) << grade3 
+                          << std::setw(4) << grade4
+                          << std::setw(4) << grade5 << std::endl;
     }
 
     inputFile.close();
