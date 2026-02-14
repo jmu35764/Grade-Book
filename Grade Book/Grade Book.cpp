@@ -6,15 +6,25 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
+string ReadTxt(string file);
+
 int main()
 {
-    // For now just getting the reading file aspect of this to work
+    string filename = "StudentGrades.txt";
+    ReadTxt(filename);
+
+}
+
+string ReadTxt(string file)
+{
     std::ifstream inputFile("StudentGrades.txt");
 
     if (!inputFile.is_open())
     {
         std::cerr << "Error: OCuld not open the file";
-        return 1;
+        return "";
     }
 
     //std::string name[20];
@@ -25,17 +35,16 @@ int main()
 
     while (inputFile >> name >> grade1 >> grade2 >> grade3 >> grade4 >> grade5)
     {
-        std::cout << name << std::setw(4) << grade1 
-                          << std::setw(4) << grade2 
-                          << std::setw(4) << grade3 
-                          << std::setw(4) << grade4
-                          << std::setw(4) << grade5 << std::endl;
+        std::cout << name << std::setw(4) << grade1
+            << std::setw(4) << grade2
+            << std::setw(4) << grade3
+            << std::setw(4) << grade4
+            << std::setw(4) << grade5 << std::endl;
     }
 
     inputFile.close();
-    return 0;
+    //return 0;
 }
-
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
