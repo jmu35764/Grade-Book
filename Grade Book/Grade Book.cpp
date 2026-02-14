@@ -8,42 +8,80 @@
 
 using namespace std;
 
-string ReadTxt(string file);
+const int TESTNUMBER = 5;
+void ReadTxt(string file, string names[], int grades[][TESTNUMBER]);
+void calc_average(int grades[][TESTNUMBER], int avg[]);
 
 int main()
 {
+    string stud_name[20];
+    int average[20];
+    //int x = 0;
+    int grade_num[20][TESTNUMBER];
     string filename = "StudentGrades.txt";
-    ReadTxt(filename);
+
+    ReadTxt(filename, stud_name, grade_num);
+               
+    //cout << "Hello" << endl;
+
+    //cout << grade_num[0][0] << grade_num[0][1] << grade_num[0][2] << endl;
+    calc_average(grade_num, average);
+
+        
 
 }
 
-string ReadTxt(string file)
+void ReadTxt(string file, string names[20],int grades[20][TESTNUMBER])
 {
-    std::ifstream inputFile("StudentGrades.txt");
+    ifstream inputFile(file);
 
     if (!inputFile.is_open())
     {
         std::cerr << "Error: OCuld not open the file";
-        return "";
+        //return "";
     }
 
     //std::string name[20];
-    std::string name;
+    /*std::string name[20];
     int average[20];
+    int grade[20][TESTNUMBER];*/
     int x = 0;
-    std::string grade1, grade2, grade3, grade4, grade5;
 
-    while (inputFile >> name >> grade1 >> grade2 >> grade3 >> grade4 >> grade5)
+    while (inputFile >> names[x] >> grades[x][0] >> grades[x][1] >> 
+           grades[x][2] >> grades[x][3] >> grades[x][4])
     {
-        std::cout << name << std::setw(4) << grade1
-            << std::setw(4) << grade2
-            << std::setw(4) << grade3
-            << std::setw(4) << grade4
-            << std::setw(4) << grade5 << std::endl;
+        std::cout << names[x] 
+            << std::setw(4) << grades[x][0]
+            << std::setw(4) << grades[x][1]
+            << std::setw(4) << grades[x][2]
+            << std::setw(4) << grades[x][3]
+            << std::setw(4) << grades[x][4] << std::endl;
+            x++;
     }
 
     inputFile.close();
     //return 0;
+}
+
+void calc_average(int grades[][TESTNUMBER], int avg[])
+{
+    int total = 0;
+    //int average[20];
+
+    for (int z = 0; z < 20; z++)
+    {
+        for (int y = 0; y < TESTNUMBER; y++)
+        {
+            total = grades[z][y] + total;
+        }
+
+        avg[z] = total / TESTNUMBER;
+
+        cout << avg[z] << endl;
+    }
+
+    //return avg[];
+    
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
