@@ -22,9 +22,6 @@ int main()
 
     ReadTxt(filename, stud_name, grade_num);
                
-    //cout << "Hello" << endl;
-
-    //cout << grade_num[0][0] << grade_num[0][1] << grade_num[0][2] << endl;
     calc_average(grade_num, average);
 
         
@@ -78,6 +75,8 @@ void calc_average(int grades[][TESTNUMBER], int avg[])
         avg[z] = total / TESTNUMBER;
 
         cout << avg[z] << endl;
+        //cout << total << endl;
+        total = 0;
     }
 
     //return avg[];
