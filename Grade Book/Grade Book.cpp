@@ -9,26 +9,29 @@
 using namespace std;
 
 const int TESTNUMBER = 5;
-void ReadTxt(string file, string names[], int grades[][TESTNUMBER]);
+int ReadTxt(string file, string names[], int grades[][TESTNUMBER], int a);
 void calc_average(int grades[][TESTNUMBER], int avg[]);
 
 int main()
 {
     string stud_name[20];
     int average[20];
-    //int x = 0;
+    int x = 0;
     int grade_num[20][TESTNUMBER];
     string filename = "StudentGrades.txt";
 
-    ReadTxt(filename, stud_name, grade_num);
-               
+    x = ReadTxt(filename, stud_name, grade_num, x); 
+
+    cout << x << endl;
+
     calc_average(grade_num, average);
 
+    //for (i = 0; i)
         
 
 }
 
-void ReadTxt(string file, string names[20],int grades[20][TESTNUMBER])
+int ReadTxt(string file, string names[20],int grades[20][TESTNUMBER], int a)
 {
     ifstream inputFile(file);
 
@@ -42,22 +45,22 @@ void ReadTxt(string file, string names[20],int grades[20][TESTNUMBER])
     /*std::string name[20];
     int average[20];
     int grade[20][TESTNUMBER];*/
-    int x = 0;
+    //int x = 0;
 
-    while (inputFile >> names[x] >> grades[x][0] >> grades[x][1] >> 
-           grades[x][2] >> grades[x][3] >> grades[x][4])
+    while (inputFile >> names[a] >> grades[a][0] >> grades[a][1] >> 
+           grades[a][2] >> grades[a][3] >> grades[a][4])
     {
-        std::cout << names[x] 
-            << std::setw(4) << grades[x][0]
-            << std::setw(4) << grades[x][1]
-            << std::setw(4) << grades[x][2]
-            << std::setw(4) << grades[x][3]
-            << std::setw(4) << grades[x][4] << std::endl;
-            x++;
+        std::cout << names[a] 
+            << std::setw(4) << grades[a][0]
+            << std::setw(4) << grades[a][1]
+            << std::setw(4) << grades[a][2]
+            << std::setw(4) << grades[a][3]
+            << std::setw(4) << grades[a][4] << std::endl;
+            a++;
     }
 
     inputFile.close();
-    //return 0;
+    return a;
 }
 
 void calc_average(int grades[][TESTNUMBER], int avg[])
@@ -79,8 +82,39 @@ void calc_average(int grades[][TESTNUMBER], int avg[])
         total = 0;
     }
 
-    //return avg[];
-    
+
+}
+
+char ConvertScore(int num_grade[], int a)
+{
+    char grade;
+    //int a;
+
+    if (num_grade[a] <= 100 && num_grade[a] >= 90)
+    {
+        grade = 'A';
+    }
+
+    else if (num_grade[a] <= 89 && num_grade[a] >= 80)
+    {
+        grade = 'B';
+    }
+
+    else if (num_grade[a] <= 79 && num_grade[a] >= 70)
+    {
+        grade = 'C';
+    }
+
+    else if (num_grade[a] <= 69 && num_grade[a] >= 60)
+    {
+        grade = 'D';
+    }
+
+    else if (num_grade[a] < 60)
+    {
+        grade = 'F';
+    }
+    return grade;
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
