@@ -22,20 +22,15 @@ int main()
     int grade_num[20][TESTNUMBER];
     string filename = "StudentGrades.txt";
 
+    //Set 'x' equal to the number of names in the file
     x = ReadTxt(filename, stud_name, grade_num, x); 
 
-    //cout << x << endl;
-
+    // Calculate the average grade for each student
+    // and put the value in the 'average' array
     calc_average(grade_num, average, x);
 
+    // Display the data
     Report(stud_name, average, x);
-
-    /*for (int i = 0; i <= (x - 1); i++)
-    {
-        ConvertScore(average, i);
-    }*/
-    
-    //cout << setw(10) << stud_name[0] << setw(5) << average[0] << setw(3) << ConvertScore(average, 0) << endl;
 
 }
 
@@ -43,27 +38,19 @@ int ReadTxt(string file, string names[20],int grades[20][TESTNUMBER], int a)
 {
     ifstream inputFile(file);
 
+    //Ends program if the file cannot be opened
     if (!inputFile.is_open())
     {
-        std::cerr << "Error: OCuld not open the file";
-        //return "";
+        cerr << "Error: Could not open the file";
+        exit(EXIT_FAILURE);
     }
 
-    //std::string name[20];
-    /*std::string name[20];
-    int average[20];
-    int grade[20][TESTNUMBER];*/
-    //int x = 0;
-
+    // While the file is opened, fill the values of the name
+    // and grades array, and keep track of the number of
+    // names/lines in the txt file
     while (inputFile >> names[a] >> grades[a][0] >> grades[a][1] >> 
            grades[a][2] >> grades[a][3] >> grades[a][4])
     {
-        /*std::cout << names[a]
-            << std::setw(4) << grades[a][0]
-            << std::setw(4) << grades[a][1]
-            << std::setw(4) << grades[a][2]
-            << std::setw(4) << grades[a][3]
-            << std::setw(4) << grades[a][4] << std::endl;*/
             a++;
     }
 
@@ -73,11 +60,13 @@ int ReadTxt(string file, string names[20],int grades[20][TESTNUMBER], int a)
 
 void calc_average(int grades[][TESTNUMBER], double avg[], int a)
 {
+    // Initalize value of total to 0
     double total = 0;
-    //int average[20];
 
+    // First for loop is for each student
     for (int z = 0; z <= (a-1); z++)
     {
+        //Second for loop is for the grades of each student
         for (int y = 0; y < TESTNUMBER; y++)
         {
             total = grades[z][y] + total;
@@ -85,8 +74,7 @@ void calc_average(int grades[][TESTNUMBER], double avg[], int a)
 
         avg[z] = total / TESTNUMBER;
 
-        //cout << avg[z] << endl;
-        //cout << total << endl;
+        // Resets value of total for each student
         total = 0;
     }
 
@@ -95,9 +83,10 @@ void calc_average(int grades[][TESTNUMBER], double avg[], int a)
 
 char ConvertScore(double num_grade[], int a)
 {
+    // This function outputs a character value based on a numerical score
+
     char grade = 'z';
-    //cout << "Code didn't stop" << endl;
-    //int a;
+
         if (num_grade[a] <= 100 && num_grade[a] >= 90)
         {
             grade = 'A';
@@ -122,16 +111,19 @@ char ConvertScore(double num_grade[], int a)
         {
             grade = 'F';
         }
-    //cout << grade << endl;
+
     return grade;
 }
 
 void Report(string s_name[], double avg[], int a)
 {
+    // First Row serves as a title for the table shown
+    
     cout << left << setw(10) << "Students"
          << setw(10) << "Averages"
          << setw(8) << "Grades" << endl << endl;
     
+    // Diplays the names, average scores, and Letter Grades for each student
     for (int i = 0; i <= (a-1); i++)
     {
         cout << left << setw(10) << s_name[i]
@@ -140,10 +132,6 @@ void Report(string s_name[], double avg[], int a)
     }
 }
 
-/*void Report()
-{
-    string names = 
-}*/
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
