@@ -10,12 +10,13 @@ using namespace std;
 
 const int TESTNUMBER = 5;
 int ReadTxt(string file, string names[], int grades[][TESTNUMBER], int a);
-void calc_average(int grades[][TESTNUMBER], int avg[]);
+void calc_average(int grades[][TESTNUMBER], double avg[], int b);
+char ConvertScore(double num_grade[], int a);
 
 int main()
 {
     string stud_name[20];
-    int average[20];
+    double average[20];
     int x = 0;
     int grade_num[20][TESTNUMBER];
     string filename = "StudentGrades.txt";
@@ -24,9 +25,12 @@ int main()
 
     cout << x << endl;
 
-    calc_average(grade_num, average);
+    calc_average(grade_num, average, x);
 
-    //for (i = 0; i)
+    for (int i = 0; i <= (x-1); i++)
+    {
+        ConvertScore(average, i);
+    }
         
 
 }
@@ -63,12 +67,12 @@ int ReadTxt(string file, string names[20],int grades[20][TESTNUMBER], int a)
     return a;
 }
 
-void calc_average(int grades[][TESTNUMBER], int avg[])
+void calc_average(int grades[][TESTNUMBER], double avg[], int b)
 {
-    int total = 0;
+    double total = 0;
     //int average[20];
 
-    for (int z = 0; z < 20; z++)
+    for (int z = 0; z <= (b-1); z++)
     {
         for (int y = 0; y < TESTNUMBER; y++)
         {
@@ -85,9 +89,9 @@ void calc_average(int grades[][TESTNUMBER], int avg[])
 
 }
 
-char ConvertScore(int num_grade[], int a)
+char ConvertScore(double num_grade[], int a)
 {
-    char grade;
+    char grade = 'z';
     //int a;
 
     if (num_grade[a] <= 100 && num_grade[a] >= 90)
@@ -114,8 +118,14 @@ char ConvertScore(int num_grade[], int a)
     {
         grade = 'F';
     }
+    cout << grade << endl;
     return grade;
 }
+
+/*void Report()
+{
+    string names = 
+}*/
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
