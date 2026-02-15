@@ -12,6 +12,7 @@ const int TESTNUMBER = 5;
 int ReadTxt(string file, string names[], int grades[][TESTNUMBER], int a);
 void calc_average(int grades[][TESTNUMBER], double avg[], int b);
 char ConvertScore(double num_grade[], int a);
+void Report(string s_name[], double aver[], int c);
 
 int main()
 {
@@ -23,15 +24,18 @@ int main()
 
     x = ReadTxt(filename, stud_name, grade_num, x); 
 
-    cout << x << endl;
+    //cout << x << endl;
 
     calc_average(grade_num, average, x);
 
-    for (int i = 0; i <= (x-1); i++)
+    Report(stud_name, average, x);
+
+    /*for (int i = 0; i <= (x - 1); i++)
     {
         ConvertScore(average, i);
-    }
-        
+    }*/
+    
+    //cout << setw(10) << stud_name[0] << setw(5) << average[0] << setw(3) << ConvertScore(average, 0) << endl;
 
 }
 
@@ -54,12 +58,12 @@ int ReadTxt(string file, string names[20],int grades[20][TESTNUMBER], int a)
     while (inputFile >> names[a] >> grades[a][0] >> grades[a][1] >> 
            grades[a][2] >> grades[a][3] >> grades[a][4])
     {
-        std::cout << names[a] 
+        /*std::cout << names[a]
             << std::setw(4) << grades[a][0]
             << std::setw(4) << grades[a][1]
             << std::setw(4) << grades[a][2]
             << std::setw(4) << grades[a][3]
-            << std::setw(4) << grades[a][4] << std::endl;
+            << std::setw(4) << grades[a][4] << std::endl;*/
             a++;
     }
 
@@ -81,7 +85,7 @@ void calc_average(int grades[][TESTNUMBER], double avg[], int b)
 
         avg[z] = total / TESTNUMBER;
 
-        cout << avg[z] << endl;
+        //cout << avg[z] << endl;
         //cout << total << endl;
         total = 0;
     }
@@ -92,34 +96,44 @@ void calc_average(int grades[][TESTNUMBER], double avg[], int b)
 char ConvertScore(double num_grade[], int a)
 {
     char grade = 'z';
+    //cout << "Code didn't stop" << endl;
     //int a;
+        if (num_grade[a] <= 100 && num_grade[a] >= 90)
+        {
+            grade = 'A';
+        }
 
-    if (num_grade[a] <= 100 && num_grade[a] >= 90)
-    {
-        grade = 'A';
-    }
+        else if (num_grade[a] < 90 && num_grade[a] >= 80)
+        {
+            grade = 'B';
+        }
 
-    else if (num_grade[a] <= 89 && num_grade[a] >= 80)
-    {
-        grade = 'B';
-    }
+        else if (num_grade[a] < 80 && num_grade[a] >= 70)
+        {
+            grade = 'C';
+        }
 
-    else if (num_grade[a] <= 79 && num_grade[a] >= 70)
-    {
-        grade = 'C';
-    }
+        else if (num_grade[a] < 70 && num_grade[a] >= 60)
+        {
+            grade = 'D';
+        }
 
-    else if (num_grade[a] <= 69 && num_grade[a] >= 60)
-    {
-        grade = 'D';
-    }
-
-    else if (num_grade[a] < 60)
-    {
-        grade = 'F';
-    }
-    cout << grade << endl;
+        else if (num_grade[a] < 60)
+        {
+            grade = 'F';
+        }
+    //cout << grade << endl;
     return grade;
+}
+
+void Report(string s_name[], double aver[], int c)
+{
+    for (int i = 0; i <= (c-1); i++)
+    {
+        cout << left << setw(10) << s_name[i] 
+             << setw(5) << aver[i] 
+             << setw(3) << ConvertScore(aver, i) << endl;
+    }
 }
 
 /*void Report()
