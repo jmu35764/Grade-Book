@@ -10,9 +10,9 @@ using namespace std;
 
 const int TESTNUMBER = 5;
 int ReadTxt(string file, string names[], int grades[][TESTNUMBER], int a);
-void calc_average(int grades[][TESTNUMBER], double avg[], int b);
+void calc_average(int grades[][TESTNUMBER], double avg[], int a);
 char ConvertScore(double num_grade[], int a);
-void Report(string s_name[], double aver[], int c);
+void Report(string s_name[], double avg[], int a);
 
 int main()
 {
@@ -71,12 +71,12 @@ int ReadTxt(string file, string names[20],int grades[20][TESTNUMBER], int a)
     return a;
 }
 
-void calc_average(int grades[][TESTNUMBER], double avg[], int b)
+void calc_average(int grades[][TESTNUMBER], double avg[], int a)
 {
     double total = 0;
     //int average[20];
 
-    for (int z = 0; z <= (b-1); z++)
+    for (int z = 0; z <= (a-1); z++)
     {
         for (int y = 0; y < TESTNUMBER; y++)
         {
@@ -126,13 +126,17 @@ char ConvertScore(double num_grade[], int a)
     return grade;
 }
 
-void Report(string s_name[], double aver[], int c)
+void Report(string s_name[], double avg[], int a)
 {
-    for (int i = 0; i <= (c-1); i++)
+    cout << left << setw(10) << "Students"
+         << setw(10) << "Averages"
+         << setw(8) << "Grades" << endl << endl;
+    
+    for (int i = 0; i <= (a-1); i++)
     {
-        cout << left << setw(10) << s_name[i] 
-             << setw(5) << aver[i] 
-             << setw(3) << ConvertScore(aver, i) << endl;
+        cout << left << setw(10) << s_name[i]
+             << setw(10) << avg[i] 
+             << setw(8) << ConvertScore(avg, i) << endl;
     }
 }
 
