@@ -115,7 +115,7 @@ char ConvertScore(double num_grade[], int a)
     return grade;
 }
 
-void Report(string s_name[], double avg[], int a)
+void Report(string names[], double avg[], int a)
 {
     // First Row serves as a title for the table shown
     
@@ -126,7 +126,7 @@ void Report(string s_name[], double avg[], int a)
     // Diplays the names, average scores, and Letter Grades for each student
     for (int i = 0; i <= (a-1); i++)
     {
-        cout << left << setw(10) << s_name[i]
+        cout << left << setw(10) << names[i]
              << setw(10) << avg[i] 
              << setw(8) << ConvertScore(avg, i) << endl;
     }
